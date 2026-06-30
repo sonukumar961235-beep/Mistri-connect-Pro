@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "290477641665",
+    "project_id": "lithe-nirvana-5rwfn",
+    "storage_bucket": "lithe-nirvana-5rwfn.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290477641665:android:ae28198f407263f7d2e940",
+        "android_client_info": {
+          "package_name": "com.mistriconnect.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290477641665-android.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mistriconnect.app",
+            "certificate_hash": "dummy"
+          }
+        },
+        {
+          "client_id": "290477641665-web.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVWsJLatyPh7lxneWF6uz6XowkJVkbpbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290477641665-web.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

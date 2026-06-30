@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "worker": {
+      "title": "Worker",
+      "description": "Worker profile details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "profession": { "type": "string" },
+        "experience": { "type": "string" },
+        "dailyWage": { "type": "number" },
+        "aadhaar": { "type": "string" },
+        "about": { "type": "string" },
+        "isApproved": { "type": "boolean" },
+        "availability": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "photoUrl": { "type": "string" }
+      }
+    },
+    "customer": {
+      "title": "Customer",
+      "description": "Customer profile details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "photoUrl": { "type": "string" }
+      }
+    },
+    "job": {
+      "title": "Job",
+      "description": "Job request",
+      "type": "object",
+      "properties": {
+        "customerId": { "type": "string" },
+        "workerId": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "notification": {
+      "title": "Notification",
+      "description": "User notification",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "read": { "type": "boolean" },
+        "message": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/workers/{workerId}": {
+      "schema": { "$ref": "#/entities/worker" },
+      "description": "Worker profiles"
+    },
+    "/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/customer" },
+      "description": "Customer profiles"
+    },
+    "/jobs/{jobId}": {
+      "schema": { "$ref": "#/entities/job" },
+      "description": "Job requests"
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/notification" },
+      "description": "User notifications"
+    }
+  }
+}

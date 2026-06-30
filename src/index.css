@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-500: #f97316; /* orange-500 */
+  --color-secondary-500: #3b82f6; /* blue-500 */
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-blue-500;
+  }
+  .bg-gradient-brand {
+    @apply bg-gradient-to-r from-orange-500 to-blue-600;
+  }
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 font-sans antialiased;
+  scroll-behavior: smooth;
+}

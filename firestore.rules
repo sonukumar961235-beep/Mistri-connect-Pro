@@ -1,0 +1,59 @@
+rules_version = '2';
+// Update
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Workers Collection
+    match /workers/{workerId} {
+      // Anyone can read workers (for the search/grid) if they are approved
+      // or if they are the owner themselves.
+      // For simplicity in development, allowing read to all.
+      allow read: if true; 
+      
+      // Only owner can create or update their own profile
+      allow create: if isOwner(workerId) && request.resource.data.keys().hasAll(['name', 'email', 'phone', 'city', 'state', 'profession', 'experience', 'dailyWage', 'aadhaar']);
+      allow update: if isOwner(workerId);
+      allow delete: if isOwner(workerId);
+    }
+
+    // Customers Collection
+    match /customers/{customerId} {
+      allow read: if true;
+      allow create: if isOwner(customerId);
+      allow update: if isOwner(customerId);
+      allow delete: if isOwner(customerId);
+    }
+    
+    // Users Collection (fallback if used)
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow write: if isOwner(userId);
+    }
+
+    // Jobs Collection
+    match /jobs/{jobId} {
+      allow read: if true; // In a real app, restrict to involved parties
+      allow create: if isSignedIn();
+      allow update: if isSignedIn(); // Add better role checks here later
+    }
+
+    // Notifications
+    match /notifications/{notificationId} {
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']);
+    }
+  }
+}
